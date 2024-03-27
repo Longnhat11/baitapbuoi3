@@ -32,9 +32,9 @@ namespace baitapbuoi3
                         while (ilaso == false)
                         {
                             Console.WriteLine("ban nhap khong phai so! xin moi nhap lai:");
-                            n = Console.ReadLine();
-                            isNumeric = int.TryParse(n, out Ktrasoi);
-                            if ((Ktrasoi > -2147483648) && (Ktrasoi < 2147483647))
+                            kti = Console.ReadLine();
+                            ilaso = int.TryParse(kti, out Ktrasoi);
+                            if ((Ktrasoi > -2147483648) && (Ktrasoi < 2147483647)&&(ilaso!=true))
                             {
                                 Console.WriteLine("ban nhap so khong trong khoang int, xin moi nhap lai.");
                                 ilaso = false;
@@ -164,8 +164,8 @@ namespace baitapbuoi3
             static void Main(string[] args)
             {
                 int[] mangso = {};
-                nhapmang(out 
-                    mangso);
+                Console.WriteLine("dau tien ban phai nhap 1 day so mang vao!");
+                nhapmang(out mangso);
                 int tongchanra, tonglera;
                 Console.WriteLine("xin moi nhap lua chon cua ban: tu 1-6.\n1.la in ra mang chan va mang le tu mang ban vua nhap.\n2.la in ra sap xep tang dan va giam dan cua mang ban vua nhap." +
                     "\n3.tinh tong so chan va tong so le trong mang ban vua nhap.\n4.kiem tra cac so trong mang co la so amstrong hay khong." +
