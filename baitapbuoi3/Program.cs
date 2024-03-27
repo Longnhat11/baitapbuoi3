@@ -127,15 +127,93 @@ namespace baitapbuoi3
                     else{ Console.WriteLine("so " +i + " trong mang khong la so amstrong"); }
                 }
             }
+            static void songuyento(int[] mangvao)
+            {
+                int tongsongto = 0;
+                foreach (var i in mangvao)
+                {
+                    int dem = 0;
+                    for (int j = 1; j <= i / 2; j++)
+                    {
+                        if (i % j == 0) { dem++; }
+                    }
+                    if (dem == 1) { tongsongto = tongsongto + i; }
+                }
+                Console.WriteLine("tong cac so nguyen to trong mang la: " + tongsongto);
+            }
+            static void tongsochanletc(int[] mangvao,out int tongchan, out int tongle)
+            {
+            tongchan = 0;tongle = 0;
+                foreach (int i in mangvao)
+                {
+                    if (i % 2 != 0)
+                    {
+                        tongle = tongle + i;
+                    }
+                }
+                Console.WriteLine("\ntong so le la: " + tongle);
+                foreach (int i in mangvao)
+                {
+                    if (i % 2 == 0)
+                    {
+                         tongchan = tongchan + i;
+                    }
+                }
+                Console.WriteLine("tong so chan la: " + tongchan);
+            }
             static void Main(string[] args)
             {
                 int[] mangso = {};
-                nhapmang(out mangso);
-                inmagchanle(mangso);
-                sapxepmang(mangso);
-                tongsochanle(mangso);
-                soamstrong(mangso);
-                Console.ReadKey();
+                nhapmang(out 
+                    mangso);
+                int tongchanra, tonglera;
+                Console.WriteLine("xin moi nhap lua chon cua ban: tu 1-6.\n1.la in ra mang chan va mang le tu mang ban vua nhap.\n2.la in ra sap xep tang dan va giam dan cua mang ban vua nhap." +
+                    "\n3.tinh tong so chan va tong so le trong mang ban vua nhap.\n4.kiem tra cac so trong mang co la so amstrong hay khong." +
+                    "\n5.tinh tong cac so nguyen to co trong mang. \n6.tinh tong cac so chan va le bang tham chieu.");
+                string n = Console.ReadLine();
+                int Kiemtra;
+                bool isNumeric = int.TryParse(n, out Kiemtra);
+                if (Kiemtra < 1 || Kiemtra > 6)
+                {
+                    Console.WriteLine("ban phai nhap so trong menu lua chon!");
+                    isNumeric = false;
+                }
+                while (isNumeric == false)
+                {
+                    Console.WriteLine("ban nhap khong phai so! xin moi nhap lai:");
+                    n = Console.ReadLine();
+                    isNumeric = int.TryParse(n, out Kiemtra);
+                    if(Kiemtra<1||Kiemtra>6)
+                    {
+                        Console.WriteLine("ban phai nhap so trong menu lua chon!");
+                        isNumeric = false;
+                    }
+                }
+                switch (Kiemtra)
+                {
+                case 1:
+                    inmagchanle(mangso);
+                    break;
+                case 2:
+                    sapxepmang(mangso);
+                    break;
+                case 3:
+                    tongsochanle(mangso);
+                    break;
+                case 4:
+                    soamstrong(mangso);
+                    break;
+                case 5:
+                    songuyento(mangso);
+                    break;
+                case 6:
+                    tongsochanletc(mangso, out tongchanra, out tonglera);
+                    Console.WriteLine("tham chieu ra tong chan ra la " + tongchanra + "\ntham chieu ra tong le ra :" + tonglera);
+                    break;
+                default:
+                    break;
+                }
+            Console.ReadKey();
             }
         }
 }
